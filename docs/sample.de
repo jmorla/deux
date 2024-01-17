@@ -1,8 +1,21 @@
 
-
+// not initialized unsigned integer variable
 var value: unsigned int;
 
 
+// An integer constant
+const status = 0;
+
+
+// A function declaration
+function sum(a: double, b: double): double {
+    return a + b;
+}
+
+// A function call
+sum(a, b);
+// Or.. naming params
+sum(a=value1, b=value2);
 
 
 
