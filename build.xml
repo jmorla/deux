@@ -1,9 +1,9 @@
 <project name="deuxc" basedir="." default="main">
 
-    <property name="sourceDir" value="src" />
-    <property name="buildDir" value="build" />
-    <property name="classesDir" value="${buildDir}/classes" />
-    <property name="mainClass" value="org.deuxc.Main" />
+    <property name="source.dir" value="src" />
+    <property name="build.dir" value="build" />
+    <property name="classes.dir" value="${build.dir}/classes" />
+    <property name="main.class" value="org.deuxc.Main" />
 
     <target name="clean">
         <delete dir="build" />
@@ -11,19 +11,19 @@
 
     <target name="compile">
         <mkdir dir="build/classes" />
-        <javac srcdir="${sourceDir}" destdir="${classesDir}" />
+        <javac srcdir="${source.dir}" destdir="${classes.dir}" />
     </target>
 
     <target name="package" depends="compile">
-        <jar destfile="${buildDir}//${ant.project.name}.jar" basedir="${classesDir}">
+        <jar destfile="${build.dir}/${ant.project.name}.jar" basedir="${classes.dir}">
             <manifest>
-                <attribute name="Main-Class" value="${mainClass}" />
+                <attribute name="Main-Class" value="${main.class}" />
             </manifest>
         </jar>
     </target>
 
     <target name="run" depends="package">
-        <java jar="${buildDir}/${ant.project.name}.jar" fork="true">
+        <java jar="${build.dir}/${ant.project.name}.jar" fork="true">
             <arg line="Echo" />
         </java>
     </target>
