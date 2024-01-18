@@ -18,6 +18,11 @@ public class DeuxTokenizer extends BaseReader {
      */
     private final Map<String, TokenKind> keywords = new HashMap<>();
 
+    /**
+     * Buffer for building literals
+     */
+    private final StringBuilder literal;
+
 
     /**
      * Constructs a DeuxTokenizer with the specified input source.
@@ -28,6 +33,7 @@ public class DeuxTokenizer extends BaseReader {
     protected DeuxTokenizer(Reader source) {
         super(null, source);
 
+        this.literal = new StringBuilder();
         for (TokenKind kind : TokenKind.values()) {
             if (kind.name != null) {
                 keywords.put(kind.name, kind);
