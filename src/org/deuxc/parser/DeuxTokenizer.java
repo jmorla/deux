@@ -1,32 +1,38 @@
 package org.deuxc.parser;
 
+import java.io.Reader;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.deuxc.parser.Token.TokenKind;
+
 /**
  * The DeuxTokenizer class designed to map an input stream of characters
  * into a deux token sequence
  */
-public class DeuxTokenizer implements Lexer {
+public class DeuxTokenizer extends BaseReader {
+
 
     /**
-     * Retrieves the next token from the input source.
-     *
-     * @return The next token from the input source.
+     * Keyword array. Maps name indices to Token.
      */
-    @Override
-    public Token getToken() {
-        return null;
-    }
+    private final Map<String, TokenKind> keywords = new HashMap<>();
+
 
     /**
-     * Retrieves a token from the input source with a specified lookahead.
-     * This method returns the token at the current position in the input source,
-     * considering the specified lookahead to predict future tokens.
+     * Constructs a DeuxTokenizer with the specified input source.
      *
-     * @param lookahead The number of tokens to lookahead for prediction.
-     * @return The token at the current position with the specified lookahead.
+     * @param source The input source reader for the tokenizer.
+     *               It provides the source code to be tokenized.
      */
-    @Override
-    public Token getToken(int lookahead) {
-        return null;
+    protected DeuxTokenizer(Reader source) {
+        super(null, source);
+
+        for (TokenKind kind : TokenKind.values()) {
+            if (kind.name != null) {
+                keywords.put(kind.name, kind);
+            }
+        }
     }
     
     

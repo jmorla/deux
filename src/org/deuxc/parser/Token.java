@@ -27,7 +27,8 @@ public class Token {
      * optionally associated with a name.
      */
     public enum TokenKind {
-        EOF();
+        EOF(),
+        RETURN("return");
 
         public final String name;
 
