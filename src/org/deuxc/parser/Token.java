@@ -3,7 +3,7 @@ package org.deuxc.parser;
 
 /**
  * This is the class representing a deux token. Each token has several fields
- * that are set by the javac lexer (i.e. start/end position, string value, etc).
+ * that are set by the deux lexer (i.e. start/end position, string value, etc).
  */
 public class Token {
 
@@ -28,7 +28,9 @@ public class Token {
      */
     public enum TokenKind {
         EOF(),
-        RETURN("return");
+        RETURN("return"),
+        NUMERIC(),
+        SEMICOLON(";");
 
         public final String name;
 

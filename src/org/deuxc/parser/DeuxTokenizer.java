@@ -33,7 +33,5 @@ public class DeuxTokenizer extends BaseReader {
                 keywords.put(kind.name, kind);
             }
         }
-    }
-    
-    
+    } 
 }
