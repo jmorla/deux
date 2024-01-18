@@ -27,6 +27,7 @@ public class Token {
      * optionally associated with a name.
      */
     public enum TokenKind {
+        ERROR(),
         EOF(),
         RETURN("return"),
         NUMERIC(),
