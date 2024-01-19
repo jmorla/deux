@@ -39,5 +39,14 @@ public class DeuxTokenizer extends BaseReader {
                 keywords.put(kind.name, kind);
             }
         }
-    } 
+    }
+    
+    /**
+     * Reads and returns the next token from the input source.
+     *
+     * @return The next token read from the input source.
+     */
+    public Token readToken() {
+        return null;
+    }
 }
