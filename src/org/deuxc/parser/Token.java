@@ -42,7 +42,7 @@ public class Token {
 
         @Override
         public String toString() {
-            return "NumericToken(" + value + ")";
+            return "Number(" + value + ")";
         }
 
     } 
