@@ -1,6 +1,5 @@
 package org.deuxc.parser;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Reader;
 
@@ -21,7 +20,7 @@ public abstract class BaseReader {
     /**
      * Buffer containing characters from source file.
      */
-    private final BufferedReader buffer;
+    private final Reader buffer;
 
     /**
      * Current character being observed
@@ -42,7 +41,7 @@ public abstract class BaseReader {
     */
     protected BaseReader(Log log, Reader source) {
         this.log = log;
-        buffer = new BufferedReader(source);
+        buffer = source;
     }
 
 
