@@ -90,7 +90,8 @@ public class DeuxTokenizer extends BaseReader {
                         break loop;
                     }
                     kind = TokenKind.ERROR;
-                    break;
+                    next();
+                    break loop;
             }
         }
 
@@ -126,7 +127,7 @@ public class DeuxTokenizer extends BaseReader {
         put();
         next();
 
-        loop: do {
+        do {
             switch (get()) {
                 case 'a': case 'A': case 'b': case 'B': case 'c': case 'C':
                 case 'd': case 'D': case 'e': case 'E': case 'f': case 'F':
@@ -138,12 +139,12 @@ public class DeuxTokenizer extends BaseReader {
                 case 'v': case 'V': case 'w': case 'W': case 'x': case 'X':
                 case 'y': case 'Y': case 'z': case 'Z':
                     put();
-                    next();
-                    checkIdentifier();
                     break;
                 default:
-                    break loop;
+                    checkIdentifier();
+                    return;
             }
+            next();
         } while (true);
     }
 
