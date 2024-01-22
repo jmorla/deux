@@ -111,10 +111,6 @@ public class DeuxTokenizer extends BaseReader {
             return new Token(kind, null, 0, 0);
         }
 
-        if (kind == TokenKind.ERROR) {
-            return new Token(kind, null, 0, 0);
-        }
-
         return new Token(TokenKind.ERROR, null, 0, 0);
     }
 
