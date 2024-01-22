@@ -16,7 +16,7 @@ public abstract class BaseReader {
     /**
      * Log for error reporting.
      */
-    private final Log log;
+    protected final Log log;
 
     /**
      * Buffer containing characters from source file.
