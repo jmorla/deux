@@ -1,5 +1,8 @@
 package org.deuxc;
 
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.Reader;
 import java.io.StringReader;
 
 import org.deuxc.parser.DeuxTokenizer;
@@ -21,10 +24,14 @@ public class Main {
      * 
      * @param args Command-line arguments (if any) passed to the compiler.
      */
-    public static void main(String[] args) {
-        StringReader reader;
+    public static void main(String[] args) throws IOException {
+        Reader reader;
         if (args != null && args.length > 0) {
-            reader = new StringReader(args[0]);
+            if (args[0].equals("-f")) {
+                reader = new FileReader(args[1]);
+            } else {
+                reader = new StringReader(args[0]);
+            }
         } else {
             reader = new StringReader("");
         }
