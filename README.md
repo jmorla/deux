@@ -9,24 +9,11 @@ $  ant package
 ```
 
 ```sh
-$ java -jar ./build/deuxc.jar "return 0;"
+$ java -jar ./build/deuxc.jar docs/sample.de
 
 # output
 Token(RETURN)
 Number(0)
 Token(SEMICOLON)
-Token(EOF)
-```
-
-```sh
-$ java -jar ./build/deuxc.jar "foo return noob 0; bar"
-
-# output
-Token(ERROR)
-Token(RETURN)
-Token(ERROR)
-Number(0)
-Token(SEMICOLON)
-Token(ERROR)
 Token(EOF)
 ```
