@@ -1,9 +1,11 @@
 package org.deuxc;
 
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.Reader;
-import java.io.StringReader;
+import java.nio.ByteBuffer;
+import java.nio.CharBuffer;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 import org.deuxc.parser.DeuxTokenizer;
 import org.deuxc.parser.Token;
@@ -25,25 +27,23 @@ public class Main {
      * @param args Command-line arguments (if any) passed to the compiler.
      */
     public static void main(String[] args) throws IOException {
-        Reader reader;
-        if (args != null && args.length > 0) {
-            if (args[0].equals("-f")) {
-                reader = new FileReader(args[1]);
-            } else {
-                reader = new StringReader(args[0]);
-            }
-        } else {
-            reader = new StringReader("");
+        if (args == null || args.length == 0) {
+            System.err.println("deuxc: fatal error: no input files");
+            System.err.println("compilation terminated.");
+            return;
         }
 
-        DeuxTokenizer deuxTokenizer = new DeuxTokenizer(reader);
+        Charset charset = Charset.forName("UTF-8");
+        byte[] bytes = Files.readAllBytes(Path.of(args[0]));
+        CharBuffer buffer = charset.decode(ByteBuffer.wrap(bytes));
+        
+        DeuxTokenizer deuxTokenizer = new DeuxTokenizer(buffer);
 
         Token token;
         do {
             token = deuxTokenizer.readToken();
             System.out.println(token);
         } while (token.kind != TokenKind.EOF);
-
-
     }
+
 }

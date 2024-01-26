@@ -1,6 +1,6 @@
 package org.deuxc.parser;
 
-import java.io.Reader;
+import java.nio.CharBuffer;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,15 +35,14 @@ public class DeuxTokenizer extends BaseReader {
      * @param source The input source reader for the tokenizer.
      *               It provides the source code to be tokenized.
      */
-    public DeuxTokenizer(Reader source) {
-        super(null, source);
+    public DeuxTokenizer(CharBuffer buffer) {
+        super(null, buffer.array());
         this.literal = new StringBuilder();
         for (TokenKind kind : TokenKind.values()) {
             if (kind.name != null) {
                 keywords.put(kind.name, kind);
             }
         }
-        next(); // initialize current character
     }
 
     /**
@@ -85,7 +84,7 @@ public class DeuxTokenizer extends BaseReader {
                     next();
                     break loop;
                 default:
-                    if (getCodePoint() == -1) {
+                    if (get() == EOF) {
                         kind = TokenKind.EOF;
                         break loop;
                     }

@@ -1,8 +1,5 @@
 package org.deuxc.parser;
 
-import java.io.IOException;
-import java.io.Reader;
-
 import org.deuxc.logger.Log;
 
 /**
@@ -12,6 +9,13 @@ import org.deuxc.logger.Log;
  */
 public abstract class BaseReader {
 
+
+    /** 
+     * End of input character. 
+     * Used to denote the last defined character in a source file.
+     */
+    public final byte EOF = 0x1A;
+
     /**
      * Log for error reporting.
      */
@@ -20,13 +24,18 @@ public abstract class BaseReader {
     /**
      * Buffer containing characters from source file.
      */
-    private final Reader buffer;
+    private final char[] buffer;
 
+    
     /**
      * Current character being observed
     */
     private char character;
 
+    /**
+     * Character buffer index of character currently being observed.
+     */
+    private int position;
 
     /**
      * Codepoint of character currently being observed.
@@ -39,9 +48,12 @@ public abstract class BaseReader {
      * @param log    Log for error reporting
      * @param source Reader containin source
     */
-    protected BaseReader(Log log, Reader source) {
+    protected BaseReader(Log log, char[] array) {
         this.log = log;
-        buffer = source;
+        buffer = array;
+        position = 0;
+
+        nextCodePoint();
     }
 
 
@@ -84,25 +96,14 @@ public abstract class BaseReader {
      * @return The Unicode code point read from the buffer.
      */
     protected int nextCodePoint() {
-        codepoint = read();
-        character = (char) codepoint;
+        if(buffer.length <= position) {
+            character = EOF;
+        } else {
+            character = buffer[position ++]; 
+        }
+        codepoint = (int) character;
 
         return codepoint;
-    }
-
-
-    /**
-     * Reads the next integer from the input buffer.
-     * 
-     * @return The next integer read from the input buffer. Returns -1 if an
-     *         IOException occurs during the read operation.
-     */
-    private int read() {
-        try {
-            return buffer.read();
-        } catch (IOException ex) {
-            return -1;
-        }
     }
     
 }
