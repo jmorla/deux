@@ -1,6 +1,6 @@
 package org.deuxc.parser;
 
-import org.deuxc.util.Log;
+import org.deuxc.diagnostic.Log;
 
 /**
  * An abstract base class for tokenizer. This class provides a foundation 

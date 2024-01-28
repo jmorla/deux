@@ -4,9 +4,9 @@ import java.nio.CharBuffer;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.deuxc.diagnostic.Log;
 import org.deuxc.parser.Token.NumericToken;
 import org.deuxc.parser.Token.TokenKind;
-import org.deuxc.util.Log;
 
 /**
  * The DeuxTokenizer class designed to map an input stream of characters

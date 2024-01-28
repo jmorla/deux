@@ -1,4 +1,4 @@
-package org.deuxc.util;
+package org.deuxc.diagnostic;
 
 /**
  * Interface for logging messages in the Deuxc compiler.
