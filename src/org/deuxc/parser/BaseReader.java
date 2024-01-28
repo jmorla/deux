@@ -1,6 +1,6 @@
 package org.deuxc.parser;
 
-import org.deuxc.logger.Log;
+import org.deuxc.util.Log;
 
 /**
  * An abstract base class for tokenizer. This class provides a foundation 
@@ -96,14 +96,23 @@ public abstract class BaseReader {
      * @return The Unicode code point read from the buffer.
      */
     protected int nextCodePoint() {
-        if(buffer.length <= position) {
+        if (buffer.length <= position) {
             character = EOF;
         } else {
-            character = buffer[position ++]; 
+            character = buffer[position++];
         }
         codepoint = (int) character;
 
         return codepoint;
+    }
+    
+    /**
+     * Returns current positions
+     * 
+     * @return the cursor current position
+    */
+    protected int getPosition() {
+        return position;
     }
     
 }

@@ -16,36 +16,29 @@ public class Token {
     /** The end position of this token */
     public final int end;
 
-    public final String value;
-
-    Token(TokenKind kind, String value, int start, int end) {
+    Token(TokenKind kind, int start, int end) {
         this.kind = kind;
-        this.value = value;
         this.start = start;
         this.end = end;
     }
-
-    @Override
-    public String toString() {
-        return "Token(" + kind.toString() + ")";
-    }
-
 
     /**
      * Represents a numeric token, extending the base Token class.
      */
     public static class NumericToken extends Token {
 
+        public final String value;
+
         NumericToken(String value, int start, int end) {
-            super(TokenKind.NUMERIC, value, start, end);
+            super(TokenKind.NUMERIC, start, end);
+            this.value = value;
         }
+    }
 
-        @Override
-        public String toString() {
-            return "Number(" + value + ")";
-        }
+    public String toString() {
+        return kind.toString();
+    }
 
-    } 
 
     /**
      * This enum defines all types of tokens used by the deux lexer. A token is
@@ -68,6 +61,18 @@ public class Token {
             this.name = name;
         }
 
+        public String toString() {
+            switch (this) {
+                case ERROR:
+                    return "token.bad-symbol";
+                case EOF:
+                    return "token.end-of-input";
+                case NUMERIC:
+                    return "token.numeric";
+                default:
+                    return "token.symbol(" + name + ")";
+            }
+        }
     }
 
 }

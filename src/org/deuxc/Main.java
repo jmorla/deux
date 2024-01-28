@@ -7,7 +7,7 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-import org.deuxc.parser.DeuxTokenizer;
+import org.deuxc.parser.DeuxScanner;
 import org.deuxc.parser.Token;
 import org.deuxc.parser.Token.TokenKind;
 
@@ -30,18 +30,19 @@ public class Main {
         if (args == null || args.length == 0) {
             System.err.println("deuxc: fatal error: no input files");
             System.err.println("compilation terminated.");
-            return;
+            System.exit(64);
         }
 
-        Charset charset = Charset.forName("UTF-8");
+        Charset charset = Charset.defaultCharset();
         byte[] bytes = Files.readAllBytes(Path.of(args[0]));
         CharBuffer buffer = charset.decode(ByteBuffer.wrap(bytes));
         
-        DeuxTokenizer deuxTokenizer = new DeuxTokenizer(buffer);
+        DeuxScanner scanner = new DeuxScanner(buffer);
 
         Token token;
         do {
-            token = deuxTokenizer.readToken();
+            scanner.nextToken();
+            token = scanner.getToken();
             System.out.println(token);
         } while (token.kind != TokenKind.EOF);
     }

@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.deuxc.parser.Token.NumericToken;
 import org.deuxc.parser.Token.TokenKind;
+import org.deuxc.util.Log;
 
 /**
  * The DeuxTokenizer class designed to map an input stream of characters
@@ -35,8 +36,8 @@ public class DeuxTokenizer extends BaseReader {
      * @param source The input source reader for the tokenizer.
      *               It provides the source code to be tokenized.
      */
-    public DeuxTokenizer(CharBuffer buffer) {
-        super(null, buffer.array());
+    public DeuxTokenizer(Log log, CharBuffer buffer) {
+        super(log, buffer.array());
         this.literal = new StringBuilder();
         for (TokenKind kind : TokenKind.values()) {
             if (kind.name != null) {
@@ -45,6 +46,16 @@ public class DeuxTokenizer extends BaseReader {
         }
     }
 
+
+    /**
+     * Reports lexical errors
+     * 
+    */
+    // private void lexError(Diagnostic.Error error) {
+    //     log.error(error);
+    //     kind = TokenKind.ERROR;
+    // }
+
     /**
      * Reads and returns the next token from the input source.
      *
@@ -52,8 +63,10 @@ public class DeuxTokenizer extends BaseReader {
      */
     public Token readToken() {
 
+        int pos;
         literal.setLength(0);
         loop: while (true) {
+            pos = getPosition();
 
             switch (get()) {
                 case ' ':
@@ -88,30 +101,21 @@ public class DeuxTokenizer extends BaseReader {
                         kind = TokenKind.EOF;
                         break loop;
                     }
-                    kind = TokenKind.ERROR;
+                    // lexError(Errors.illegalCharacterError(get()));
                     next();
                     break loop;
             }
         }
+        
+        int endPos = getPosition();
 
         if (kind == TokenKind.NUMERIC) {
-            return new NumericToken(literal.toString(), 0, 0);
+            return new NumericToken(literal.toString(), pos, endPos);
         }
 
-        if (kind == TokenKind.EOF) {
-            return new Token(kind, null, 0, 0);
-        }
-
-        if (kind == TokenKind.SEMICOLON) {
-            return new Token(kind, null, 0, 0);
-        }
-
-        if (kind == TokenKind.RETURN) {
-            return new Token(kind, null, 0, 0);
-        }
-
-        return new Token(TokenKind.ERROR, null, 0, 0);
+        return new Token(kind, pos, endPos);
     }
+    
 
     /**
      * Scans and processes an identifier.
@@ -151,7 +155,7 @@ public class DeuxTokenizer extends BaseReader {
         if (keywords.containsKey(ident)) {
             kind = keywords.get(ident);
         } else {
-            kind = TokenKind.ERROR;
+            // lexError(Errors.illegalIdentifier(ident));
         }
     }
 
