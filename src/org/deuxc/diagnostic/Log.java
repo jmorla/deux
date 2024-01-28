@@ -1,5 +1,7 @@
 package org.deuxc.diagnostic;
 
+import org.deuxc.diagnostic.DxcDiagnostic.Error;
+
 /**
  * Interface for logging messages in the Deuxc compiler.
  * Implementations of this interface provide methods to log informational,
@@ -15,14 +17,6 @@ public interface Log {
      * @param pos The position the error happened
      * @param error The error to be logged.
      */
-    void error();
+    void error(int pos, Error errorMessage);
 
-
-    /**
-     * Logs an warning.
-     *
-     * @param pos The position the warning happened
-     * @param warn The warning to be logged.
-     */
-    void warn();
 }
