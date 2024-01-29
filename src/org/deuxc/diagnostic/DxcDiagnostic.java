@@ -9,6 +9,7 @@ public class DxcDiagnostic implements Diagnostic {
     private final int position;
     private final DiagnosticSource diagnosticSource;
     private final DiagnosticInfo diagnosticInfo;
+    private final DiagnosticFormatter<DxcDiagnostic> formatter;
     
     /**
      * A diagnostic key object encapsulates basic properties of a diagnostic,
@@ -58,13 +59,16 @@ public class DxcDiagnostic implements Diagnostic {
      * @param diagnosticInfo   The information associated with the diagnostic.
      * @param diagnosticSource The source of the diagnostic information.
      */
-    private DxcDiagnostic(
+    public DxcDiagnostic(
         int position,
         DiagnosticInfo diagnosticInfo,
-        DiagnosticSource diagnosticSource) {
+        DiagnosticSource diagnosticSource,
+        DiagnosticFormatter<DxcDiagnostic> formatter
+    ) {
         this.position = position;
         this.diagnosticInfo = diagnosticInfo;
         this.diagnosticSource = diagnosticSource;
+        this.formatter = formatter;
     }
 
 
@@ -93,6 +97,11 @@ public class DxcDiagnostic implements Diagnostic {
     @Override
     public long getColumnNumber() {
         return diagnosticSource.getColumnNumber(position);
+    }
+
+    @Override
+    public String toString() {
+        return formatter.format(this);
     }
 
 }

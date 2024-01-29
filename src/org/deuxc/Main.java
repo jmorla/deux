@@ -38,7 +38,7 @@ public class Main {
         byte[] bytes = Files.readAllBytes(Path.of(args[0]));
         CharBuffer buffer = charset.decode(ByteBuffer.wrap(bytes));
         
-        DeuxScanner scanner = new DeuxScanner(new DefaultLogger(), buffer);
+        DeuxScanner scanner = new DeuxScanner(new DefaultLogger(buffer.array()), buffer);
 
         Token token;
         do {
