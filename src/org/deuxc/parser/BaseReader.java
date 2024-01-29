@@ -1,7 +1,5 @@
 package org.deuxc.parser;
 
-import org.deuxc.diagnostic.Log;
-
 /**
  * An abstract base class for tokenizer. This class provides a foundation 
  * for implementing specialized common functionalities.
@@ -15,11 +13,6 @@ public abstract class BaseReader {
      * Used to denote the last defined character in a source file.
      */
     public final byte EOF = 0x1A;
-
-    /**
-     * Log for error reporting.
-     */
-    protected final Log log;
 
     /**
      * Buffer containing characters from source file.
@@ -48,8 +41,7 @@ public abstract class BaseReader {
      * @param log    Log for error reporting
      * @param source Reader containin source
     */
-    protected BaseReader(Log log, char[] array) {
-        this.log = log;
+    protected BaseReader(char[] array) {
         buffer = array;
         position = 0;
 

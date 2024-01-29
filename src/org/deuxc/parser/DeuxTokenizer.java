@@ -4,9 +4,9 @@ import java.nio.CharBuffer;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.deuxc.diagnostic.DxcDiagnostic;
 import org.deuxc.diagnostic.Log;
-import org.deuxc.diagnostic.DiagnosticMessages.Errors;
+import org.deuxc.diagnostic.Diagnostic.DiagnosticFragment;
+import org.deuxc.diagnostic.Diagnostic.Errors;
 import org.deuxc.parser.Token.NumericToken;
 import org.deuxc.parser.Token.TokenKind;
 
@@ -26,6 +26,11 @@ public class DeuxTokenizer extends BaseReader {
      */
     private final StringBuilder literal;
 
+    /**
+     * Log for error reporting.
+     */
+    private final Log log;
+
 
     /**
      * The token kind, set by nextToken().
@@ -39,8 +44,9 @@ public class DeuxTokenizer extends BaseReader {
      *               It provides the source code to be tokenized.
      */
     public DeuxTokenizer(Log log, CharBuffer buffer) {
-        super(log, buffer.array());
+        super(buffer.array());
         this.literal = new StringBuilder();
+        this.log = log;
         for (TokenKind kind : TokenKind.values()) {
             if (kind.name != null) {
                 keywords.put(kind.name, kind);
@@ -53,7 +59,7 @@ public class DeuxTokenizer extends BaseReader {
      * Reports lexical errors
      * 
     */
-    private void lexError(int pos, DxcDiagnostic.Error error) {
+    private void lexError(int pos, DiagnosticFragment error) {
         log.error(pos, error);
         kind = TokenKind.ERROR;
     }

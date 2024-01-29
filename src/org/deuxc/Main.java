@@ -7,7 +7,8 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-import org.deuxc.diagnostic.DefaultLogger;
+import org.deuxc.diagnostic.ConsoleLogger;
+import org.deuxc.diagnostic.DiagnosticSource;
 import org.deuxc.parser.DeuxScanner;
 import org.deuxc.parser.Token;
 import org.deuxc.parser.Token.TokenKind;
@@ -37,8 +38,13 @@ public class Main {
         Charset charset = Charset.defaultCharset();
         byte[] bytes = Files.readAllBytes(Path.of(args[0]));
         CharBuffer buffer = charset.decode(ByteBuffer.wrap(bytes));
+
+        DiagnosticSource source = new DiagnosticSource(
+                Path.of(args[0]).getFileName().toString(), buffer.array());
+            
+        ConsoleLogger logger = new ConsoleLogger(source);
         
-        DeuxScanner scanner = new DeuxScanner(new DefaultLogger(buffer.array()), buffer);
+        DeuxScanner scanner = new DeuxScanner(logger, buffer);
 
         Token token;
         do {

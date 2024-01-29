@@ -21,8 +21,16 @@ public class DiagnosticSource {
     /** The line number of a line found by findLine. */
     private int line;
 
+    private String fileName;
+
     public DiagnosticSource(char[] array) {
-        buffer = array;
+        this("", array);
+    }
+
+
+    public DiagnosticSource(String fileName, char[] content) {
+        this.fileName = fileName;
+        this.buffer = content;
     }
 
     /**
@@ -109,6 +117,10 @@ public class DiagnosticSource {
 
         this.line = line;
         return true;
+    }
+
+    public String fileName() {
+        return this.fileName;
     }
 
 

@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.deuxc.diagnostic.Log;
 
+
 public class DeuxScanner implements Lexer {
 
     /**
@@ -22,6 +23,9 @@ public class DeuxScanner implements Lexer {
      */
     private final List<Token> savedTokens = new ArrayList<>();
 
+    /**
+     * Deux tokenizer
+    */
     private final DeuxTokenizer tokenizer;
 
     public DeuxScanner(Log log, CharBuffer buffer) {
