@@ -6,7 +6,11 @@ import org.deuxc.diagnostic.DxcDiagnostic.Error;
 public interface DiagnosticMessages {
     public static abstract class Errors {
 
-        private static String ILLEGAL_SYMBOL_MESSAGE = "{0}:{1}:{2} error: '{3}' invalid symbol";
+        private static String ILLEGAL_SYMBOL_MESSAGE = """
+            $file:  $line:$column:  Error: `{0}` invalid symbol
+                $line| $code
+                    |""";
+                
 
         /**
          * Creates an error diagnostic indicating an illegal symbol

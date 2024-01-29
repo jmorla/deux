@@ -104,4 +104,12 @@ public class DxcDiagnostic implements Diagnostic {
         return formatter.format(this);
     }
 
+    public String getTemplate() {
+        return diagnosticInfo.getTemplate();
+    }
+
+    public String[] getArgs() {
+        return diagnosticInfo.getArgs();
+    }
+
 }
