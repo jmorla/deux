@@ -38,7 +38,11 @@ public class DxcDiagnostic implements Diagnostic {
         }
     }
 
-
+    /**
+     * Represents an error diagnostic within the context of diagnostic information.
+     * Instances of this class convey information about errors that occurred during
+     * processing.
+     */
     public static final class Error extends DiagnosticInfo {
 
         protected Error(String template, String[] args) {
