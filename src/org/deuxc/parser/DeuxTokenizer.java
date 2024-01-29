@@ -4,7 +4,9 @@ import java.nio.CharBuffer;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.deuxc.diagnostic.DxcDiagnostic;
 import org.deuxc.diagnostic.Log;
+import org.deuxc.diagnostic.DiagnosticMessages.Errors;
 import org.deuxc.parser.Token.NumericToken;
 import org.deuxc.parser.Token.TokenKind;
 
@@ -51,10 +53,10 @@ public class DeuxTokenizer extends BaseReader {
      * Reports lexical errors
      * 
     */
-    // private void lexError(Diagnostic.Error error) {
-    //     log.error(error);
-    //     kind = TokenKind.ERROR;
-    // }
+    private void lexError(int pos, DxcDiagnostic.Error error) {
+        log.error(pos, error);
+        kind = TokenKind.ERROR;
+    }
 
     /**
      * Reads and returns the next token from the input source.
@@ -101,7 +103,7 @@ public class DeuxTokenizer extends BaseReader {
                         kind = TokenKind.EOF;
                         break loop;
                     }
-                    // lexError(Errors.illegalCharacterError(get()));
+                    lexError(pos, Errors.illegalSymbolError(String.valueOf(get())));
                     next();
                     break loop;
             }
@@ -155,7 +157,7 @@ public class DeuxTokenizer extends BaseReader {
         if (keywords.containsKey(ident)) {
             kind = keywords.get(ident);
         } else {
-            // lexError(Errors.illegalIdentifier(ident));
+            lexError(getPosition(), Errors.illegalSymbolError(ident));
         }
     }
 

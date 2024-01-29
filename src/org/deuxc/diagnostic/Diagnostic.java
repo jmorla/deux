@@ -14,10 +14,12 @@ public interface Diagnostic {
 
     DiagnosticType getType();
 
-    long getStartPosition();
-
-    long getEndPosition();
+    long getPosition();
 
     long getLineNumber();
+
+    String getLineCode();
+
+    long getColumnNumber();
    
 }

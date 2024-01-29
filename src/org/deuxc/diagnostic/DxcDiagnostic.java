@@ -5,8 +5,11 @@ package org.deuxc.diagnostic;
  * 
 */
 public class DxcDiagnostic implements Diagnostic {
+
+    private final int position;
+    private final DiagnosticSource diagnosticSource;
+    private final DiagnosticInfo diagnosticInfo;
     
- 
     /**
      * A diagnostic key object encapsulates basic properties of a diagnostic,
      * such the type, template, and arguments of the message to be proccessed by the formatter
@@ -42,32 +45,50 @@ public class DxcDiagnostic implements Diagnostic {
             super(DiagnosticType.ERROR, template, args);
         }
     }
-    
-    private final DiagnosticInfo diagnosticTemplate;
 
-    private DxcDiagnostic(DiagnosticInfo diagnosticTemplate) {
-        this.diagnosticTemplate = diagnosticTemplate;
+
+    /**
+     * Constructs a new DxcDiagnostic with the provided diagnostic information and
+     * source.
+     *
+     * @param diagnosticInfo   The information associated with the diagnostic.
+     * @param diagnosticSource The source of the diagnostic information.
+     */
+    private DxcDiagnostic(
+        int position,
+        DiagnosticInfo diagnosticInfo,
+        DiagnosticSource diagnosticSource) {
+        this.position = position;
+        this.diagnosticInfo = diagnosticInfo;
+        this.diagnosticSource = diagnosticSource;
     }
 
 
     @Override
     public DiagnosticType getType() {
-        return diagnosticTemplate.type;
+        return diagnosticInfo.type;
     }
 
     @Override
-    public long getStartPosition() {
-        throw new UnsupportedOperationException("Unimplemented method 'getStartPosition'");
-    }
-
-    @Override
-    public long getEndPosition() {
-        throw new UnsupportedOperationException("Unimplemented method 'getEndPosition'");
+    public long getPosition() {
+        return position;
     }
 
     @Override
     public long getLineNumber() {
-        throw new UnsupportedOperationException("Unimplemented method 'getLineNumber'");
+        return diagnosticSource.getLineNumber(position);
+    }
+
+
+    @Override
+    public String getLineCode() {
+        return diagnosticSource.getLine(position).orElse("<no-line-available>");
+    }
+
+
+    @Override
+    public long getColumnNumber() {
+        return diagnosticSource.getColumnNumber(position);
     }
 
 }

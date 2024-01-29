@@ -4,6 +4,8 @@ import java.nio.CharBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.deuxc.diagnostic.Log;
+
 public class DeuxScanner implements Lexer {
 
     /**
@@ -22,8 +24,8 @@ public class DeuxScanner implements Lexer {
 
     private final DeuxTokenizer tokenizer;
 
-    public DeuxScanner(CharBuffer buffer) {
-        this(new DeuxTokenizer(null, buffer));
+    public DeuxScanner(Log log, CharBuffer buffer) {
+        this(new DeuxTokenizer(log, buffer));
     }
 
     public DeuxScanner(DeuxTokenizer tokenizer) {
