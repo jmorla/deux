@@ -8,12 +8,16 @@ Deux is an experimental programming language designed to explore innovative lang
 $  ant package
 ```
 
+sample.de
+```js
+return 10 abcd; //invalid token abcd 
+```
+
 ```sh
 $ java -jar ./build/deuxc.jar docs/sample.de
 
 # output
-Token(RETURN)
-Number(0)
-Token(SEMICOLON)
-Token(EOF)
+sample.de:2:11  Error 'abcd' illegal symbol
+   2 | return 10 abcd;                         
+     | 
 ```
