@@ -19,5 +19,5 @@ $ java -jar ./build/deuxc.jar docs/sample.de
 # output
 sample.de:2:11  Error 'abcd' illegal symbol
    2 | return 10 abcd;                         
-     | 
+     |            ^ 
 ```
