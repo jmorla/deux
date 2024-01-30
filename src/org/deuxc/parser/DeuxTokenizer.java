@@ -98,7 +98,7 @@ public class DeuxTokenizer extends BaseReader {
                 case 's': case 'S': case 't': case 'T': case 'u': case 'U':
                 case 'v': case 'V': case 'w': case 'W': case 'x': case 'X':
                 case 'y': case 'Y': case 'z': case 'Z':
-                    scanIdent();
+                    scanIdent(pos);
                     break loop;
                 case ';':
                     kind = TokenKind.SEMICOLON;
@@ -130,7 +130,7 @@ public class DeuxTokenizer extends BaseReader {
      * performs the necessary operations to process the identifier found
      * during scanning.
      */
-    private void scanIdent() {
+    private void scanIdent(int pos) {
         put();
         next();
 
@@ -148,7 +148,7 @@ public class DeuxTokenizer extends BaseReader {
                     put();
                     break;
                 default:
-                    checkIdentifier();
+                    checkIdentifier(pos);
                     return;
             }
             next();
@@ -158,12 +158,12 @@ public class DeuxTokenizer extends BaseReader {
     /**
      * Checks if identifier is a keyword of valid name.
      */
-    private void checkIdentifier() {
+    private void checkIdentifier(int pos) {
         String ident = literal.toString();
         if (keywords.containsKey(ident)) {
             kind = keywords.get(ident);
         } else {
-            lexError(getPosition(), Errors.illegalSymbolError(ident));
+            lexError(pos, Errors.illegalSymbolError(ident));
         }
     }
 
