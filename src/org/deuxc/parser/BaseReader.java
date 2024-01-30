@@ -88,7 +88,8 @@ public abstract class BaseReader {
      * @return The Unicode code point read from the buffer.
      */
     protected int nextCodePoint() {
-        if (buffer.length < position) {
+
+        if (position >= buffer.length - 1) {
             character = EOF;
         } else {
             character = buffer[++position];
