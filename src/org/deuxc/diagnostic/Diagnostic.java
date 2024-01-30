@@ -45,7 +45,7 @@ public class Diagnostic {
          */
         public static DiagnosticFragment sourceLineFragment(int lineNumber, String lineCode) {
             var size = String.valueOf(lineNumber).length();
-            return new DiagnosticFragment("   %-" + size + "d | %-40s", lineNumber, lineCode);
+            return new DiagnosticFragment("   %-" + size + "d | %-"+lineCode.length()+"s", lineNumber, lineCode);
         }
         
         /**
@@ -57,7 +57,7 @@ public class Diagnostic {
          */
         public static DiagnosticFragment sourcePositionFragment(int lineNumber, int pos) {
             var size = String.valueOf(lineNumber).length();
-            return new DiagnosticFragment("   %-" + size + "s | " + "%-" + pos + "s^", "", "");
+            return new DiagnosticFragment("   %-" + size + "s | " + "%-" + (pos > 0? pos - 1 : 0) + "s^", "", "");
         }
     }
 

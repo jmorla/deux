@@ -50,7 +50,7 @@ public class Main {
         do {
             scanner.nextToken();
             token = scanner.getToken();
-            // System.out.println(token);
+            //System.out.println(token);
         } while (token.kind != TokenKind.EOF);
     }
 
