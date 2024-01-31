@@ -12,7 +12,8 @@ public class Diagnostic {
 
         public static DiagnosticFragment illegalSymbolError(String symbol) {
             return new DiagnosticFragment(
-                    "Error '%s' illegal symbol", symbol);
+                    "%sError%s %s'%s'%s illegal symbol", AnsiColor.BOLD_RED, AnsiColor.RESET,
+                    AnsiColor.BOLD_WHITE, symbol, AnsiColor.RESET);
         }
     }
 
@@ -33,7 +34,8 @@ public class Diagnostic {
          */
         public static DiagnosticFragment locationFragment(
                 String fileName, int lineNumber, int columnNumber) {
-            return new DiagnosticFragment("%s:%d:%d", fileName, lineNumber, columnNumber);
+            return new DiagnosticFragment("%s%s:%d:%d%s", AnsiColor.BOLD_WHITE,
+            fileName, lineNumber, columnNumber, AnsiColor.RESET);
         }
 
         /**
@@ -57,7 +59,7 @@ public class Diagnostic {
          */
         public static DiagnosticFragment sourcePositionFragment(int lineNumber, int pos) {
             var size = String.valueOf(lineNumber).length();
-            return new DiagnosticFragment("   %-" + size + "s | " + "%-" + (pos > 0? pos - 1 : 0) + "s^", "", "");
+            return new DiagnosticFragment("   %-" + size + "s |" + "%-" + pos  + "s%s^%s", "", "", AnsiColor.BOLD_RED, AnsiColor.RESET);
         }
     }
 
@@ -98,5 +100,21 @@ public class Diagnostic {
         }
     }
 
+    enum AnsiColor {
+        BOLD_WHITE("\u001b[1;37m"),
+        BOLD_RED("\u001b[1;31m"),
+        RESET("\u001b[0m");
+
+        final String value;
+
+        AnsiColor(String color) {
+            this.value = color;
+        }
+
+        @Override
+        public String toString() {
+            return value;
+        }
+    }
 
 }
