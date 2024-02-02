@@ -1,6 +1,10 @@
 package org.deuxc.parser;
 
 import org.deuxc.tree.DeuxTree.CompilationUnit;
+import org.deuxc.tree.DeuxTree.Expression;
+import org.deuxc.tree.DeuxTree.PrimaryExpression;
+import org.deuxc.tree.DeuxTree.ReturnStatement;
+import org.deuxc.tree.DeuxTree.Statement;
 
 /**
  * The {@code DeuxParser} class is an implementation of the {@link Parser} interface
@@ -25,5 +29,24 @@ public class DeuxParser implements Parser {
     public CompilationUnit parse() {
         return new CompilationUnit();
     }
+
+    private Statement parseStatement() {
+        return null;
+    }
+
+    private ReturnStatement parseReturnStatement() {
+        return null;
+    }
+
+    private Expression parseExpression() {
+        return null;
+    }
+
+    private PrimaryExpression primaryExpression() {
+        return null;
+    }
     
+    private Token peek() {
+        return scanner.getToken();
+    }
 }

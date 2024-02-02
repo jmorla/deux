@@ -6,11 +6,24 @@ package org.deuxc.tree;
  */
 public class DeuxTree {
 
+    public static abstract class ParseNode {
+
+        private int pos;
+
+        public void setPos(int pos) {
+            this.pos = pos;
+        }
+
+        public int getPos() {
+            return pos;
+        }
+    }
+
     /**
      * Represents a compilation unit in a programming language.
      * A compilation unit typically corresponds to a source file.
      */
-    public static final class CompilationUnit implements Visitable {
+    public static final class CompilationUnit extends ParseNode implements Visitable {
         private Statement stmnt;
 
         @Override
@@ -27,7 +40,8 @@ public class DeuxTree {
      * Represents a general programming statement.
      * Add fields and methods related to statements here.
      */
-    public static abstract sealed class Statement implements Visitable permits ReturnStatement {
+    public static abstract sealed class Statement
+        extends ParseNode implements Visitable permits ReturnStatement {
 
     }
 
