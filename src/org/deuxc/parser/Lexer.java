@@ -22,5 +22,11 @@ public interface Lexer {
      * @return The token at the current position with the specified lookahead.
      */
     Token getToken(int lookahead);
+
+
+    /**
+     * Consume the next token.
+     */
+    void nextToken();
     
 }
