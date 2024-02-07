@@ -24,12 +24,12 @@ sample.de:2:11  Error 'abcd' illegal symbol
 
 ## Compilation Goal
 
-The goal is based on this output
+The goal is based on this source
 ```js
 return 64;
 ```
 
-Generate this assambly nasm code
+Generate this equivalent assambly nasm code
 ```asm
 global _start
 
