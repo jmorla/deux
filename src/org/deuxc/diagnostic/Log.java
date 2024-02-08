@@ -1,6 +1,6 @@
 package org.deuxc.diagnostic;
 
-import org.deuxc.diagnostic.Diagnostic.DiagnosticFragment;
+import org.deuxc.diagnostic.Diagnostic.Error;
 
 /**
  * Interface for logging messages in the Deuxc compiler.
@@ -17,6 +17,6 @@ public interface Log {
      * @param pos   The position the error happened
      * @param error The error to be logged.
      */
-    void error(int pos, DiagnosticFragment error);
+    void error(int pos, Error error);
 
 }

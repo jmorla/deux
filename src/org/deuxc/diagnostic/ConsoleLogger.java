@@ -2,7 +2,7 @@ package org.deuxc.diagnostic;
 
 import java.io.PrintWriter;
 
-import org.deuxc.diagnostic.Diagnostic.DiagnosticFragment;
+import org.deuxc.diagnostic.Diagnostic.Error;
 import org.deuxc.diagnostic.Diagnostic.Fragments;
 
 /**
@@ -42,7 +42,7 @@ public class ConsoleLogger implements Log {
      * @param pos   The position of the error in the source code.
      * @param error The diagnostic error fragment to be logged.
      */
-    public void error(int pos, DiagnosticFragment error) {
+    public void error(int pos, Error error) {
         StringBuilder builder = new StringBuilder();
         builder.append(Fragments.locationFragment(
                 diagnosticSource.fileName(),

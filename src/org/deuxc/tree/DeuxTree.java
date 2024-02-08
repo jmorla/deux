@@ -24,7 +24,17 @@ public class DeuxTree {
      * A compilation unit typically corresponds to a source file.
      */
     public static final class CompilationUnit extends ParseNode implements Visitable {
+        private final boolean valid;
         private Statement stmnt;
+
+        public CompilationUnit() {
+            this.valid = false;
+        }
+
+        public CompilationUnit(Statement statement) {
+            this.stmnt = statement;
+            this.valid = true;
+        }
 
         @Override
         public void accept(Visitor t) {
@@ -34,6 +44,10 @@ public class DeuxTree {
         public Statement getStmnt() {
             return stmnt;
         }
+
+        public boolean isValid() {
+            return valid;
+        }
     }
 
     /**
@@ -41,7 +55,7 @@ public class DeuxTree {
      * Add fields and methods related to statements here.
      */
     public static abstract sealed class Statement
-        extends ParseNode implements Visitable permits ReturnStatement {
+            extends ParseNode implements Visitable permits ReturnStatement {
 
     }
 
@@ -50,6 +64,10 @@ public class DeuxTree {
      */
     public static final class ReturnStatement extends Statement {
         private Expression expr;
+
+        public ReturnStatement(Expression expression) {
+            this.expr = expression;
+        }
 
         @Override
         public void accept(Visitor t) {
@@ -75,9 +93,19 @@ public class DeuxTree {
      */
     public static final class PrimaryExpression extends Expression {
 
+        private String value;
+
+        public PrimaryExpression(String value) {
+            this.value = value;
+        }
+
         @Override
         public void accept(Visitor t) {
             t.visitPrimaryExpression(this);
+        }
+
+        public String getValue() {
+            return value;
         }
 
     }

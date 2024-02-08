@@ -10,9 +10,20 @@ public class Diagnostic {
      */
     public static final class Errors {
 
-        public static DiagnosticFragment illegalSymbolError(String symbol) {
-            return new DiagnosticFragment(
-                    "%sError%s %s'%s'%s illegal symbol", AnsiColor.BOLD_RED, AnsiColor.RESET,
+        public static Error illegalSymbolError(String symbol) {
+            return new Error(
+                    "%sError%s %s'%s'%s unrecognized symbol", AnsiColor.BOLD_RED, AnsiColor.RESET,
+                    AnsiColor.BOLD_WHITE, symbol, AnsiColor.RESET);
+        }
+
+        public static Error missingReturnStatement() {
+            return new Error(
+                    "%sError%s missing return statement", AnsiColor.BOLD_RED, AnsiColor.RESET);
+        }
+
+        public static Error missingSymbol(String symbol) {
+            return new Error(
+                    "%sError%s %s'%s'%s expected", AnsiColor.BOLD_RED, AnsiColor.RESET,
                     AnsiColor.BOLD_WHITE, symbol, AnsiColor.RESET);
         }
     }
@@ -35,7 +46,7 @@ public class Diagnostic {
         public static DiagnosticFragment locationFragment(
                 String fileName, int lineNumber, int columnNumber) {
             return new DiagnosticFragment("%s%s:%d:%d%s", AnsiColor.BOLD_WHITE,
-            fileName, lineNumber, columnNumber, AnsiColor.RESET);
+                    fileName, lineNumber, columnNumber, AnsiColor.RESET);
         }
 
         /**
@@ -47,9 +58,9 @@ public class Diagnostic {
          */
         public static DiagnosticFragment sourceLineFragment(int lineNumber, String lineCode) {
             var size = String.valueOf(lineNumber).length();
-            return new DiagnosticFragment("   %-" + size + "d | %-"+lineCode.length()+"s", lineNumber, lineCode);
+            return new DiagnosticFragment("   %-" + size + "d | %-" + lineCode.length() + "s", lineNumber, lineCode);
         }
-        
+
         /**
          * Creates a diagnostic fragment for highlighting a specific source code
          * position.
@@ -59,8 +70,26 @@ public class Diagnostic {
          */
         public static DiagnosticFragment sourcePositionFragment(int lineNumber, int pos) {
             var size = String.valueOf(lineNumber).length();
-            return new DiagnosticFragment("   %-" + size + "s |" + "%-" + pos  + "s%s^%s", "", "", AnsiColor.BOLD_RED, AnsiColor.RESET);
+            return new DiagnosticFragment("   %-" + size + "s |" + "%-" + pos + "s%s^%s", "", "", AnsiColor.BOLD_RED,
+                    AnsiColor.RESET);
         }
+    }
+    
+    /**
+     * Represents an error diagnostic fragment.
+     */
+    public static class Error extends DiagnosticFragment {
+
+        /**
+         * Constructs an Error object with the specified message and arguments.
+         *
+         * @param message The error message.
+         * @param args    Additional arguments for formatting the message.
+         */
+        public Error(String message, Object... args) {
+            super(message, args);
+        }
+
     }
 
     /**

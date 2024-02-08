@@ -5,8 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.deuxc.diagnostic.Log;
-import org.deuxc.diagnostic.Diagnostic.DiagnosticFragment;
 import org.deuxc.diagnostic.Diagnostic.Errors;
+import org.deuxc.diagnostic.Diagnostic.Error;
 import org.deuxc.parser.Token.NumericToken;
 import org.deuxc.parser.Token.TokenKind;
 
@@ -59,7 +59,7 @@ public class DeuxTokenizer extends BaseReader {
      * Reports lexical errors
      * 
     */
-    private void lexError(int pos, DiagnosticFragment error) {
+    private void lexError(int pos, Error error) {
         log.error(pos, error);
         kind = TokenKind.ERROR;
     }

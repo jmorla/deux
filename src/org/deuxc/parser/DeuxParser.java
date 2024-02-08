@@ -1,52 +1,84 @@
 package org.deuxc.parser;
 
+import org.deuxc.diagnostic.Log;
+import org.deuxc.diagnostic.Diagnostic.DiagnosticFragment;
+import org.deuxc.diagnostic.Diagnostic.Error;
+import org.deuxc.diagnostic.Diagnostic.Errors;
+import org.deuxc.parser.Token.TokenKind;
 import org.deuxc.tree.DeuxTree.CompilationUnit;
 import org.deuxc.tree.DeuxTree.Expression;
 import org.deuxc.tree.DeuxTree.PrimaryExpression;
 import org.deuxc.tree.DeuxTree.ReturnStatement;
-import org.deuxc.tree.DeuxTree.Statement;
 
 /**
- * The {@code DeuxParser} class is an implementation of the {@link Parser} interface
+ * The {@code DeuxParser} class is an implementation of the {@link Parser}
+ * interface
  * generate the AST for the Deux Programming language spec
  */
 public class DeuxParser implements Parser {
 
-    private Lexer scanner;
+    private final Lexer scanner;
+    private final Log log;
 
-
-    public DeuxParser (Lexer scanner) {
+    public DeuxParser(Lexer scanner, Log log) {
         this.scanner = scanner;
-        scanner.nextToken();
+        this.log = log;
+        scanner.nextToken(); // initialize scanner
     }
 
     /**
-     * Parses the source code and generates the corresponding Compilation Unit.
+     * Parses a compilation unit.
      * 
-     * @return The Compilation Unit representing the Abstract Syntax Tree (AST).
+     * @return A CompilationUnit representing the parsed compilation unit.
      */
     @Override
     public CompilationUnit parse() {
-        return new CompilationUnit();
-    }
-
-    private Statement parseStatement() {
-        return null;
+        try {
+            return new CompilationUnit(parseReturnStatement());
+        } catch (ParseError error) {
+            return new CompilationUnit();
+        }
     }
 
     private ReturnStatement parseReturnStatement() {
-        return null;
+        expect(TokenKind.RETURN, Errors.missingReturnStatement());
+        Expression expr = parsePrimaryExpression();
+        expect(TokenKind.SEMICOLON, Errors.missingSymbol(TokenKind.SEMICOLON.name));
+        return new ReturnStatement(expr);
     }
 
-    private Expression parseExpression() {
-        return null;
+    private PrimaryExpression parsePrimaryExpression() {
+        Token.NumericToken token = (Token.NumericToken) 
+        expect(TokenKind.NUMERIC, Errors.missingSymbol(TokenKind.NUMERIC.name));
+        return new PrimaryExpression(token.value);
     }
 
-    private PrimaryExpression primaryExpression() {
-        return null;
-    }
-    
-    private Token peek() {
+    private Token get() {
         return scanner.getToken();
     }
+
+    private Token next() {
+        Token token = get();
+        scanner.nextToken();
+        return token;
+    }
+
+    private boolean check(TokenKind kind) {
+        return get().kind == kind;
+    }
+
+    private Token expect(TokenKind kind, Error error) {
+        if (check(kind)) {
+            return next();
+        }
+        throw error(get(), error);
+    }
+
+    private ParseError error(Token token, Error error) {
+        if (!(token.kind == TokenKind.ERROR)) {
+            log.error(token.start, error);   
+        }
+        return new ParseError();
+    }
+
 }

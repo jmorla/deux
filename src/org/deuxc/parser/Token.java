@@ -48,7 +48,7 @@ public class Token {
         ERROR(),
         EOF(),
         RETURN("return"),
-        NUMERIC(),
+        NUMERIC("number"),
         SEMICOLON(";");
 
         public final String name;

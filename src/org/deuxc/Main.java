@@ -9,9 +9,9 @@ import java.nio.file.Path;
 
 import org.deuxc.diagnostic.ConsoleLogger;
 import org.deuxc.diagnostic.DiagnosticSource;
+import org.deuxc.parser.DeuxParser;
 import org.deuxc.parser.DeuxScanner;
-import org.deuxc.parser.Token;
-import org.deuxc.parser.Token.TokenKind;
+import org.deuxc.tree.DeuxTree.CompilationUnit;
 
 /**
  * The entry point for the Deuxc compiler.
@@ -43,15 +43,13 @@ public class Main {
                 Path.of(args[0]).getFileName().toString(), buffer.array());
             
         ConsoleLogger logger = new ConsoleLogger(source);
-        
+
         DeuxScanner scanner = new DeuxScanner(logger, buffer);
 
-        Token token;
-        do {
-            scanner.nextToken();
-            token = scanner.getToken();
-            //System.out.println(token);
-        } while (token.kind != TokenKind.EOF);
+        DeuxParser parser = new DeuxParser(scanner, logger);
+
+        CompilationUnit unit = parser.parse();
+        System.out.println("Valid: " + unit.isValid());
     }
 
 }

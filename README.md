@@ -34,7 +34,7 @@ Generate this equivalent assambly nasm code
 global _start
 
 _start:
-    mov rax, 60
-    mov rdi, 64
-    syscall
+    mov rax, 60 # setting sysexit
+    mov rdi, 64 # parameter
+    syscall # making the syscall
 ```
