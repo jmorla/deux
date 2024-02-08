@@ -14,7 +14,7 @@ return 10 abcd; //invalid token abcd
 ```
 
 ```sh
-$ java -jar ./build/deuxc.jar docs/sample.de
+$ java -jar ./build/deuxc.jar docs/sample.dx
 
 # output
 sample.de:2:11  Error 'abcd' unrecognized symbol
