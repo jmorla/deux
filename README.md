@@ -24,17 +24,17 @@ sample.de:2:11  Error 'abcd' unrecognized symbol
 
 ## Compilation Goal
 
-The goal is based on this source
+The goal is to compile the following statement
 ```js
 return 64;
 ```
 
-Generate this equivalent assambly nasm code
+to this equivalent assembly nasm code
 ```asm
 global _start
 
 _start:
-    mov rax, 60 # setting sysexit
-    mov rdi, 64 # parameter
-    syscall # making the syscall
+    mov rax, 60
+    mov rdi, 64
+    syscall
 ```
