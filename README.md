@@ -17,9 +17,9 @@ return 10 abcd; //invalid token abcd
 $ java -jar ./build/deuxc.jar docs/sample.de
 
 # output
-sample.de:2:11  Error 'abcd' illegal symbol
-   2 | return 10 abcd;                         
-     |            ^ 
+sample.de:2:11  Error 'abcd' unrecognized symbol
+   2 | return 64 abcd;
+     |           ^
 ```
 
 ## Compilation Goal
