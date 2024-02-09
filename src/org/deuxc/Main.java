@@ -7,7 +7,7 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-import org.deuxc.diagnostic.ConsoleLogger;
+import org.deuxc.diagnostic.DiagnosticLogger;
 import org.deuxc.diagnostic.DiagnosticSource;
 import org.deuxc.parser.DeuxParser;
 import org.deuxc.parser.DeuxScanner;
@@ -42,7 +42,7 @@ public class Main {
         DiagnosticSource source = new DiagnosticSource(
                 Path.of(args[0]).getFileName().toString(), buffer.array());
             
-        ConsoleLogger logger = new ConsoleLogger(source);
+        DiagnosticLogger logger = new DiagnosticLogger(source);
 
         DeuxScanner scanner = new DeuxScanner(logger, buffer);
 

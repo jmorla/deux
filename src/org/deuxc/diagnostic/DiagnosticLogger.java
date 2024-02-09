@@ -9,7 +9,7 @@ import org.deuxc.diagnostic.Diagnostic.Fragments;
  * The ConsoleLogger class implements the Log interface and provides a simple
  * console-based logging mechanism.
  */
-public class ConsoleLogger implements Log {
+public class DiagnosticLogger implements Log {
 
     private PrintWriter err;
     private DiagnosticSource diagnosticSource;
@@ -19,7 +19,7 @@ public class ConsoleLogger implements Log {
      *
      * @param diagnosticSource The source of diagnostic information.
      */
-    public ConsoleLogger(DiagnosticSource diagnosticSource) {
+    public DiagnosticLogger(DiagnosticSource diagnosticSource) {
         this(new PrintWriter(System.err, true), diagnosticSource);
     }
 
@@ -30,7 +30,7 @@ public class ConsoleLogger implements Log {
      * @param err              The PrintWriter used for error output.
      * @param diagnosticSource The source of diagnostic information.
      */
-    public ConsoleLogger(PrintWriter err, DiagnosticSource diagnosticSource) {
+    public DiagnosticLogger(PrintWriter err, DiagnosticSource diagnosticSource) {
         this.err = err;
         this.diagnosticSource = diagnosticSource;
     }
