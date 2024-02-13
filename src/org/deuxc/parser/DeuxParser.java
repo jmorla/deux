@@ -1,7 +1,6 @@
 package org.deuxc.parser;
 
 import org.deuxc.diagnostic.Log;
-import org.deuxc.diagnostic.Diagnostic.DiagnosticFragment;
 import org.deuxc.diagnostic.Diagnostic.Error;
 import org.deuxc.diagnostic.Diagnostic.Errors;
 import org.deuxc.parser.Token.TokenKind;
@@ -34,8 +33,11 @@ public class DeuxParser implements Parser {
     @Override
     public CompilationUnit parse() {
         try {
-            return new CompilationUnit(parseReturnStatement());
+            var statement = parseReturnStatement();
+            expect(TokenKind.EOF, Errors.missingSymbol("eof"));
+            return new CompilationUnit(statement);
         } catch (ParseError error) {
+            // we must syncronize the parser here
             return new CompilationUnit();
         }
     }
