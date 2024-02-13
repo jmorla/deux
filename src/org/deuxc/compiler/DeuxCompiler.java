@@ -1,4 +1,4 @@
-package org.deuxc;
+package org.deuxc.compiler;
 
 
 /**
