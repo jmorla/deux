@@ -1,22 +1,17 @@
 package org.deuxc.compiler;
 
-import org.deuxc.tree.AbstractVisitor;
-import org.deuxc.tree.DeuxTree.CompilationUnit;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.deuxc.compiler.Symbol.VarSymbol;
 
 /**
- * This class represents a symbol table and extends the AbstractVisitor class.
- * It is responsible for entering symbols for all encountered definitions into
- * the symbol table.
+ * The SymbolTable class represents a symbol table.
+ * This class provides functionalities to store and retrieve symbols.
  */
-public class SymbolTable extends AbstractVisitor {
+public class SymbolTable {
 
-  
-    /**
-     * Completes the symbol table by processing the given compilation unit.
-     * This method should be called after all symbols have been added to the table.
-     *
-     * @param unit the compilation unit to be processed
-     */
-    public void complete(CompilationUnit unit) {}
-    
+    private final Map<String, VarSymbol> vars = new HashMap<>();
+ 
+    public void insertVar(VarSymbol sym) {}
 }

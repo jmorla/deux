@@ -7,11 +7,11 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-import org.deuxc.diagnostic.DiagnosticLogger;
-import org.deuxc.diagnostic.DiagnosticSource;
-import org.deuxc.parser.DeuxParser;
-import org.deuxc.parser.DeuxScanner;
-import org.deuxc.tree.DeuxTree.CompilationUnit;
+import org.deuxc.compiler.DeuxCompiler;
+import org.deuxc.compiler.Enter;
+import org.deuxc.compiler.Generator;
+import org.deuxc.diagnostic.LoggerFactory;
+import org.deuxc.parser.ParserFactory;
 
 /**
  * The entry point for the Deuxc compiler.
@@ -33,23 +33,20 @@ public class Main {
             System.err.println("deuxc: fatal error: no input files");
             System.err.println("compilation terminated.");
             System.exit(64);
+        }  
+
+        if (!Files.exists(Path.of(args[0]))) {
+            System.err.printf("File %s does not exists\n", args[0]);
+            System.exit(64);
         }
 
-        Charset charset = Charset.defaultCharset();
-        byte[] bytes = Files.readAllBytes(Path.of(args[0]));
-        CharBuffer buffer = charset.decode(ByteBuffer.wrap(bytes));
+        DeuxCompiler compiler = new DeuxCompiler(
+                new LoggerFactory(),
+                new ParserFactory(),
+                new Enter(),
+                new Generator());
 
-        DiagnosticSource source = new DiagnosticSource(
-                Path.of(args[0]).getFileName().toString(), buffer.array());
-            
-        DiagnosticLogger logger = new DiagnosticLogger(source);
-
-        DeuxScanner scanner = new DeuxScanner(logger, buffer);
-
-        DeuxParser parser = new DeuxParser(scanner, logger);
-
-        CompilationUnit unit = parser.parse();
-        System.out.println("Valid: " + unit.isValid());
+        compiler.compile(Path.of(args[0]));
     }
 
 }
