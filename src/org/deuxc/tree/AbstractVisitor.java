@@ -34,7 +34,7 @@ public class AbstractVisitor implements Visitor {
      */
     @Override
     public void visitCompilationUnit(CompilationUnit unit) {
-        unit.accept(this);
+        System.out.println("Compilation Unit");
     }
 
     /**
@@ -44,7 +44,7 @@ public class AbstractVisitor implements Visitor {
      */
     @Override
     public void visitReturnStatement(ReturnStatement rStmnt) {
-        rStmnt.accept(this);
+        System.out.println("Return Statement");
     }
 
     /**
@@ -54,7 +54,7 @@ public class AbstractVisitor implements Visitor {
      */
     @Override
     public void visitPrimaryExpression(PrimaryExpression pExpr) {
-        pExpr.accept(this);
+        System.out.println("Primary Expression");
     }
     
 }

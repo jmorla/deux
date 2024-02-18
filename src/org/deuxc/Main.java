@@ -1,17 +1,11 @@
 package org.deuxc;
 
 import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.nio.CharBuffer;
-import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+import org.deuxc.compiler.CompilerFactory;
 import org.deuxc.compiler.DeuxCompiler;
-import org.deuxc.compiler.Enter;
-import org.deuxc.compiler.Generator;
-import org.deuxc.diagnostic.LoggerFactory;
-import org.deuxc.parser.ParserFactory;
 
 /**
  * The entry point for the Deuxc compiler.
@@ -40,12 +34,8 @@ public class Main {
             System.exit(64);
         }
 
-        DeuxCompiler compiler = new DeuxCompiler(
-                new LoggerFactory(),
-                new ParserFactory(),
-                new Enter(),
-                new Generator());
-
+        DeuxCompiler compiler = CompilerFactory.newCompiler();
+        
         compiler.compile(Path.of(args[0]));
     }
 

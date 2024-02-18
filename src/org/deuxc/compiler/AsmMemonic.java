@@ -7,6 +7,8 @@ package org.deuxc.compiler;
  */
 public interface AsmMemonic {
 
+    String global = "global";
+    String start = "_start";
     /**
      * 8-bytes Registers
      * 
@@ -30,6 +32,6 @@ public interface AsmMemonic {
     */
     String SYSCALL = "syscall";
 
-    String SEPARATOR = ", ";
+    String SEPARATOR = ",";
 
 }
