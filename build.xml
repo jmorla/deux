@@ -1,4 +1,4 @@
-<project name="deuxc" basedir="." default="main">
+<project name="deuxc" basedir="." default="main" xmlns:ivy="antlib:org.apache.ivy.ant">
 
     <property environment="env" />
     <property name="source.dir" value="src" />
@@ -35,4 +35,9 @@
     </target>
 
     <target name="main" depends="clean,run" />
+
+    <target name="resolve">
+        <ivy:resolve />
+        <ivy:retrieve sync="true" type="jar" />
+    </target>
 </project>
