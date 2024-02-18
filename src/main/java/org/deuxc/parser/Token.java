@@ -1,5 +1,5 @@
 
-package main.java.org.deuxc.parser;
+package org.deuxc.parser;
 
 /**
  * This is the class representing a deux token. Each token has several fields

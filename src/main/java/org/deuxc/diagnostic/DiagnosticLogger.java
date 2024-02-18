@@ -1,9 +1,9 @@
-package main.java.org.deuxc.diagnostic;
+package org.deuxc.diagnostic;
 
 import java.io.PrintWriter;
 
-import main.java.org.deuxc.diagnostic.Diagnostic.Error;
-import main.java.org.deuxc.diagnostic.Diagnostic.Fragments;
+import org.deuxc.diagnostic.Diagnostic.Error;
+import org.deuxc.diagnostic.Diagnostic.Fragments;
 
 /**
  * The ConsoleLogger class implements the Log interface and provides a simple

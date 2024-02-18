@@ -1,6 +1,6 @@
-package main.java.org.deuxc.parser;
+package org.deuxc.parser;
 
-import main.java.org.deuxc.diagnostic.Log;
+import org.deuxc.diagnostic.Log;
 
 public final class ParserFactory {
 

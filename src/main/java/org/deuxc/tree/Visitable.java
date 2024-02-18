@@ -1,4 +1,4 @@
-package main.java.org.deuxc.tree;
+package org.deuxc.tree;
 
 /**
  * An interface for objects that can be visited by a Visitor.

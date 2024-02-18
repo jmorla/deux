@@ -1,4 +1,4 @@
-package main.java.org.deuxc.tree;
+package org.deuxc.tree;
 
 /**
  * An interface for implementing the Visitor pattern in the context of Deux

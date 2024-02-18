@@ -1,4 +1,4 @@
-package main.java.org.deuxc.parser;
+package org.deuxc.parser;
 
 
 /**

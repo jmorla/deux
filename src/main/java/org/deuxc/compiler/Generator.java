@@ -1,14 +1,14 @@
-package main.java.org.deuxc.compiler;
+package org.deuxc.compiler;
 
-import static main.java.org.deuxc.compiler.AsmMemonic.*;
+import static org.deuxc.compiler.AsmMemonic.*;
 
 import java.io.IOException;
 import java.io.Writer;
 
-import main.java.org.deuxc.tree.AbstractVisitor;
-import main.java.org.deuxc.tree.DeuxTree.CompilationUnit;
-import main.java.org.deuxc.tree.DeuxTree.PrimaryExpression;
-import main.java.org.deuxc.tree.DeuxTree.ReturnStatement;
+import org.deuxc.tree.AbstractVisitor;
+import org.deuxc.tree.DeuxTree.CompilationUnit;
+import org.deuxc.tree.DeuxTree.PrimaryExpression;
+import org.deuxc.tree.DeuxTree.ReturnStatement;
 
 /**
  * Generator is responsible for compiling Deux programming language code into

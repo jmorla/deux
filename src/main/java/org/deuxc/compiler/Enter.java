@@ -1,7 +1,7 @@
-package main.java.org.deuxc.compiler;
+package org.deuxc.compiler;
 
-import main.java.org.deuxc.tree.AbstractVisitor;
-import main.java.org.deuxc.tree.DeuxTree.CompilationUnit;
+import org.deuxc.tree.AbstractVisitor;
+import org.deuxc.tree.DeuxTree.CompilationUnit;
 
 /**
  * The Enter class is responsible for generating the symbol table.

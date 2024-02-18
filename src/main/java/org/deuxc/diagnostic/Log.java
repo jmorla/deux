@@ -1,6 +1,6 @@
-package main.java.org.deuxc.diagnostic;
+package org.deuxc.diagnostic;
 
-import main.java.org.deuxc.diagnostic.Diagnostic.Error;
+import org.deuxc.diagnostic.Diagnostic.Error;
 
 /**
  * Interface for logging messages in the Deuxc compiler.

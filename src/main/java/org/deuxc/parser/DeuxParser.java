@@ -1,13 +1,13 @@
-package main.java.org.deuxc.parser;
+package org.deuxc.parser;
 
-import main.java.org.deuxc.diagnostic.Log;
-import main.java.org.deuxc.diagnostic.Diagnostic.Error;
-import main.java.org.deuxc.diagnostic.Diagnostic.Errors;
-import main.java.org.deuxc.parser.Token.TokenKind;
-import main.java.org.deuxc.tree.DeuxTree.CompilationUnit;
-import main.java.org.deuxc.tree.DeuxTree.Expression;
-import main.java.org.deuxc.tree.DeuxTree.PrimaryExpression;
-import main.java.org.deuxc.tree.DeuxTree.ReturnStatement;
+import org.deuxc.diagnostic.Log;
+import org.deuxc.diagnostic.Diagnostic.Error;
+import org.deuxc.diagnostic.Diagnostic.Errors;
+import org.deuxc.parser.Token.TokenKind;
+import org.deuxc.tree.DeuxTree.CompilationUnit;
+import org.deuxc.tree.DeuxTree.Expression;
+import org.deuxc.tree.DeuxTree.PrimaryExpression;
+import org.deuxc.tree.DeuxTree.ReturnStatement;
 
 /**
  * The {@code DeuxParser} class is an implementation of the {@link Parser}

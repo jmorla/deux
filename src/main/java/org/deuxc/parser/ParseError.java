@@ -1,3 +1,3 @@
-package main.java.org.deuxc.parser;
+package org.deuxc.parser;
 
 public class ParseError extends Error {}

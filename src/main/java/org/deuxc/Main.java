@@ -1,11 +1,11 @@
-package main.java.org.deuxc;
+package org.deuxc;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-import main.java.org.deuxc.compiler.CompilerFactory;
-import main.java.org.deuxc.compiler.DeuxCompiler;
+import org.deuxc.compiler.CompilerFactory;
+import org.deuxc.compiler.DeuxCompiler;
 
 /**
  * The entry point for the Deuxc compiler.

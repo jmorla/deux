@@ -1,4 +1,4 @@
-package main.java.org.deuxc.compiler;
+package org.deuxc.compiler;
 
 /**
  * The Symbol class represents a symbol.

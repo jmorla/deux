@@ -1,7 +1,7 @@
-package main.java.org.deuxc.compiler;
+package org.deuxc.compiler;
 
-import main.java.org.deuxc.diagnostic.LoggerFactory;
-import main.java.org.deuxc.parser.ParserFactory;
+import org.deuxc.diagnostic.LoggerFactory;
+import org.deuxc.parser.ParserFactory;
 
 public class CompilerFactory {
 

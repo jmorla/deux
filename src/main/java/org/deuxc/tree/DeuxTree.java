@@ -1,4 +1,4 @@
-package main.java.org.deuxc.tree;
+package org.deuxc.tree;
 
 /**
  * Root class for abstract syntax tree nodes. It provides definitions

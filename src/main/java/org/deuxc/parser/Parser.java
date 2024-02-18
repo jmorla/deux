@@ -1,6 +1,6 @@
-package main.java.org.deuxc.parser;
+package org.deuxc.parser;
 
-import main.java.org.deuxc.tree.DeuxTree.CompilationUnit;
+import org.deuxc.tree.DeuxTree.CompilationUnit;
 
 /**
  * The {@code Parser} interface in the Deux Programming language

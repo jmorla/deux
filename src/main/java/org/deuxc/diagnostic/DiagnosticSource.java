@@ -1,4 +1,4 @@
-package main.java.org.deuxc.diagnostic;
+package org.deuxc.diagnostic;
 
 import java.util.Optional;
 

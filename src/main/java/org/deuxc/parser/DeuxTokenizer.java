@@ -1,13 +1,13 @@
-package main.java.org.deuxc.parser;
+package org.deuxc.parser;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import main.java.org.deuxc.diagnostic.Log;
-import main.java.org.deuxc.diagnostic.Diagnostic.Error;
-import main.java.org.deuxc.diagnostic.Diagnostic.Errors;
-import main.java.org.deuxc.parser.Token.NumericToken;
-import main.java.org.deuxc.parser.Token.TokenKind;
+import org.deuxc.diagnostic.Log;
+import org.deuxc.diagnostic.Diagnostic.Error;
+import org.deuxc.diagnostic.Diagnostic.Errors;
+import org.deuxc.parser.Token.NumericToken;
+import org.deuxc.parser.Token.TokenKind;
 
 /**
  * The DeuxTokenizer class designed to map an input stream of characters

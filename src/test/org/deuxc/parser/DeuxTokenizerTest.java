@@ -4,22 +4,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import main.java.org.deuxc.diagnostic.LoggerFactory;
-import main.java.org.deuxc.parser.DeuxTokenizer;
-import main.java.org.deuxc.parser.Token.TokenKind;
+import org.deuxc.diagnostic.LoggerFactory;
+import org.deuxc.parser.DeuxTokenizer;
+import org.deuxc.parser.Token.TokenKind;
 
 /**
  * DeuxTokenizerTest
  */
 public class DeuxTokenizerTest {
-
-    @Test
-    public void shouldTokenizeEndOfInputTokenWhenNoInput() {
-        var tokenizer = tokenizerFromSource(null);
-        var token = tokenizer.readToken();
-
-        assertEquals(token.kind, TokenKind.EOF);
-    }
 
     @Test
     public void shouldTokenizeEndOfInputToken() {

@@ -1,10 +1,10 @@
-package main.java.org.deuxc.parser;
+package org.deuxc.parser;
 
 import java.nio.CharBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
-import main.java.org.deuxc.diagnostic.Log;
+import org.deuxc.diagnostic.Log;
 
 /**
  * The DeuxScanner class implements the Lexer interface and serves as a

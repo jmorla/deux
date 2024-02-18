@@ -1,4 +1,4 @@
-package main.java.org.deuxc.compiler;
+package org.deuxc.compiler;
 
 /**
  * This class represents an assembly mnemonic, which is the symbolic name of an

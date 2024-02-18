@@ -1,4 +1,4 @@
-package main.java.org.deuxc.parser;
+package org.deuxc.parser;
 
 /**
  * An abstract base class for tokenizer. This class provides a foundation 
@@ -42,11 +42,8 @@ public abstract class BaseReader {
      * @param source Reader containin source
     */
     protected BaseReader(char[] array) {
-        if (array == null) {
-            throw new IllegalArgumentException("array cannot be empty");
-        }
         buffer = array;
-        position = 0;
+        position = -1;
 
         nextCodePoint();
     }
@@ -92,7 +89,7 @@ public abstract class BaseReader {
      */
     protected int nextCodePoint() {
 
-        if (position >= buffer.length - 1) {
+        if (buffer == null || position >= buffer.length - 1) {
             character = EOF;
         } else {
             character = buffer[++position];

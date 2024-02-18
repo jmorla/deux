@@ -1,4 +1,4 @@
-package main.java.org.deuxc.compiler;
+package org.deuxc.compiler;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -6,11 +6,11 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-import main.java.org.deuxc.diagnostic.Log;
-import main.java.org.deuxc.diagnostic.LoggerFactory;
-import main.java.org.deuxc.parser.Parser;
-import main.java.org.deuxc.parser.ParserFactory;
-import main.java.org.deuxc.tree.DeuxTree.CompilationUnit;
+import org.deuxc.diagnostic.Log;
+import org.deuxc.diagnostic.LoggerFactory;
+import org.deuxc.parser.Parser;
+import org.deuxc.parser.ParserFactory;
+import org.deuxc.tree.DeuxTree.CompilationUnit;
 
 /**
  * The DeuxCompiler class represents a compiler for the Deux programming

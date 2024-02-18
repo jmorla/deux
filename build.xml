@@ -1,7 +1,7 @@
 <project name="deuxc" basedir="." default="main" xmlns:ivy="antlib:org.apache.ivy.ant">
 
     <property environment="env" />
-    <property name="source.dir" value="src/main/java" />
+    <property name="source.dir" value="src/main/java/" />
     <property name="build.dir" value="build" />
     <property name="classes.dir" value="${build.dir}/classes" />
     <property name="main.class" value="org.deuxc.Main" />

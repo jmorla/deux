@@ -1,9 +1,9 @@
-package main.java.org.deuxc.compiler;
+package org.deuxc.compiler;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import main.java.org.deuxc.compiler.Symbol.VarSymbol;
+import org.deuxc.compiler.Symbol.VarSymbol;
 
 /**
  * The SymbolTable class represents a symbol table.

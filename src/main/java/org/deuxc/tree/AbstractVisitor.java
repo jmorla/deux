@@ -1,8 +1,8 @@
-package main.java.org.deuxc.tree;
+package org.deuxc.tree;
 
-import main.java.org.deuxc.tree.DeuxTree.CompilationUnit;
-import main.java.org.deuxc.tree.DeuxTree.PrimaryExpression;
-import main.java.org.deuxc.tree.DeuxTree.ReturnStatement;
+import org.deuxc.tree.DeuxTree.CompilationUnit;
+import org.deuxc.tree.DeuxTree.PrimaryExpression;
+import org.deuxc.tree.DeuxTree.ReturnStatement;
 
 /**
  * The AbstractVisitor class implements the Visitor interface and serves as a
