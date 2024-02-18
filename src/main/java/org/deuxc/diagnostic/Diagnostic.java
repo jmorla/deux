@@ -26,6 +26,10 @@ public class Diagnostic {
                     "%sError%s %s'%s'%s expected", AnsiColor.BOLD_RED, AnsiColor.RESET,
                     AnsiColor.BOLD_WHITE, symbol, AnsiColor.RESET);
         }
+
+        public static Error unexpectedEOI() {
+            return new Error("unexpected end of input");
+        }
     }
 
 

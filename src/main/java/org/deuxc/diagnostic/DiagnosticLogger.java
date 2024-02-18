@@ -56,6 +56,15 @@ public class DiagnosticLogger implements Log {
 
         err.println(builder);
     }
+
+    /**
+     * Logs an error message without any positional information.
+     *
+     * @param error The diagnostic error to be logged.
+     */
+    public void error(Error error) {
+        err.println(error.formatted());
+    }
     
     /**
      * Appends diagnostic information about the source code position to the given

@@ -42,6 +42,9 @@ public class DeuxCompiler {
         Parser parser = parserFactory.newParser(log, source);
 
         CompilationUnit unit = parser.parse(); // sintax & lexical analysis
+
+        if (!unit.isValid())
+            return;
         // enter.complete(unit); // semantic analysis
 
         StringWriter out = new StringWriter();

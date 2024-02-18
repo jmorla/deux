@@ -33,6 +33,10 @@ public class DeuxParser implements Parser {
     @Override
     public CompilationUnit parse() {
         try {
+            if (check(TokenKind.EOF)) {
+                log.error(Errors.unexpectedEOI());
+                return new CompilationUnit();
+            }
             var statement = parseReturnStatement();
             expect(TokenKind.EOF, Errors.missingSymbol("eof"));
             return new CompilationUnit(statement);

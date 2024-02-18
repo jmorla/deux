@@ -19,4 +19,11 @@ public interface Log {
      */
     void error(int pos, Error error);
 
+    /**
+     * Logs an error without position.
+     *
+     * @param error The error to be logged.
+     */
+    void error(Error error);
+
 }
