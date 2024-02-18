@@ -2,12 +2,11 @@ package test.org.deuxc.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.nio.CharBuffer;
-
-import org.deuxc.diagnostic.LoggerFactory;
-import org.deuxc.parser.DeuxTokenizer;
-import org.deuxc.parser.Token.TokenKind;
 import org.junit.jupiter.api.Test;
+
+import main.java.org.deuxc.diagnostic.LoggerFactory;
+import main.java.org.deuxc.parser.DeuxTokenizer;
+import main.java.org.deuxc.parser.Token.TokenKind;
 
 /**
  * DeuxTokenizerTest
@@ -49,9 +48,8 @@ public class DeuxTokenizerTest {
 
     private static DeuxTokenizer tokenizerFromSource(String source) {
         var factory = new LoggerFactory();
-        CharBuffer buffer = CharBuffer.wrap(source);
         return new DeuxTokenizer(factory.getInstance("test.dx",
-        source == null ? null : source.toCharArray()), buffer);
+        source == null ? null : source.toCharArray()), source.toCharArray());
 
     }
     
