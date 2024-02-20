@@ -1,11 +1,10 @@
-package test.org.deuxc.parser;
+package org.deuxc.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
 import org.deuxc.diagnostic.LoggerFactory;
-import org.deuxc.parser.DeuxTokenizer;
 import org.deuxc.parser.Token.TokenKind;
 
 /**
