@@ -4,8 +4,8 @@
     <property name="source.dir" value="src" />
     <property name="test.dir" value="test" />
     <property name="build.dir" value="build" />
-    <property name="classes.dir" value="${build.dir}/classes" />
-    <property name="testclasses.dir" value="${build.dir}/test" />
+    <property name="build.classpath" value="${build.dir}/classes" />
+    <property name="test.classpath" value="${build.dir}/test" />
     <property name="main.class" value="org.deuxc.Main" />
     <property name="home" value="${env.HOME}" />
 
@@ -14,44 +14,37 @@
     </target>
 
     <target name="compile">
-        <mkdir dir="${classes.dir}" />
-        <javac srcdir="${source.dir}" destdir="${classes.dir}" />
+        <mkdir dir="${build.classpath}" />
+        <javac includeantruntime="false" srcdir="${source.dir}" destdir="${build.classpath}" />
     </target>
-
-    <path id="lib">
-        <fileset dir="lib">
-            <include name="**/*.jar" />
-        </fileset>
-    </path>
-
+    
     <target name="compileTest" depends="compile" description="compile jUnit Test cases ">
-        <mkdir dir="${testclasses.dir}" />
-        <javac srcdir="${test.dir}" destdir="${testclasses.dir}"
+        <mkdir dir="${test.classpath}" />
+        <javac srcdir="${test.dir}" destdir="${test.classpath}"
             includeantruntime="true" nowarn="yes" debug="true">
             <classpath refid="lib" />
             <classpath>
-                <pathelement location="${classes.dir}" />
+                <pathelement location="${build.classpath}" />
             </classpath>
         </javac>
     </target>
 
     <target name="test" depends="compileTest">
         <junitlauncher>
-            <classpath refid="lib" />
             <classpath>
-                <pathelement location="${classes.dir}" />
+                <pathelement location="${build.classpath}" />
             </classpath>
             <classpath>
-                <pathelement location="${testclasses.dir}" />
+                <pathelement location="${test.classpath}" />
             </classpath>
             <testclasses outputdir="${build.dir}">
-                <fileset dir="${testclasses.dir}" />
+                <fileset dir="${test.classpath}" />
             </testclasses>
         </junitlauncher>
     </target> 
 
     <target name="package" depends="compile">
-        <jar destfile="${build.dir}/${ant.project.name}.jar" basedir="${classes.dir}">
+        <jar destfile="${build.dir}/${ant.project.name}.jar" basedir="${build.classpath}">
             <manifest>
                 <attribute name="Main-Class" value="${main.class}" />
             </manifest>
@@ -60,7 +53,7 @@
 
     <target name="run" depends="package">
         <java jar="${build.dir}/${ant.project.name}.jar" fork="true">
-            <arg line="docs/sample.de" />
+            <arg line="docs/sample.dx" />
         </java>
     </target>
 
