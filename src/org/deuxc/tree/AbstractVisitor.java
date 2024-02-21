@@ -1,6 +1,7 @@
 package org.deuxc.tree;
 
 import org.deuxc.tree.DeuxTree.CompilationUnit;
+import org.deuxc.tree.DeuxTree.ParseNode;
 import org.deuxc.tree.DeuxTree.PrimaryExpression;
 import org.deuxc.tree.DeuxTree.ReturnStatement;
 
@@ -34,7 +35,7 @@ public class AbstractVisitor implements Visitor {
      */
     @Override
     public void visitCompilationUnit(CompilationUnit unit) {
-        System.out.println("Compilation Unit");
+        this.visit(unit);
     }
 
     /**
@@ -44,7 +45,7 @@ public class AbstractVisitor implements Visitor {
      */
     @Override
     public void visitReturnStatement(ReturnStatement rStmnt) {
-        System.out.println("Return Statement");
+        this.visit(rStmnt);
     }
 
     /**
@@ -54,7 +55,11 @@ public class AbstractVisitor implements Visitor {
      */
     @Override
     public void visitPrimaryExpression(PrimaryExpression pExpr) {
-        System.out.println("Primary Expression");
+        this.visit(pExpr);
+    }
+
+    private void visit(ParseNode node) {
+        throw new AssertionError();
     }
     
 }

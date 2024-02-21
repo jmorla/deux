@@ -1,0 +1,15 @@
+<program> ::= <statement> EOI
+
+<statement> ::= <returnStatement>
+
+<returnStatement> ::= "return" <expression> ";"
+
+<expression> ::= <primaryExpression> | <binaryExpression>
+
+<binaryExpression> ::= <integerLiteral> "+" <integerLiteral>
+
+<primaryExpression> ::= <integerLiteral>
+
+<integerLiteral> ::= <digit> | <digit>*
+
+<digit> ::= [0-9]

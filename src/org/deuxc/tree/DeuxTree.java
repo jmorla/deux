@@ -80,10 +80,10 @@ public class DeuxTree {
     }
 
     /**
-     * Represents a general expression in a programming language.
+     * Represents a general expression in deux programming language.
      * Add fields and methods related to expressions here.
      */
-    public static abstract sealed class Expression implements Visitable {
+    public static abstract sealed class Expression extends ParseNode implements Visitable {
 
     }
 
