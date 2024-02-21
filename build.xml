@@ -22,21 +22,18 @@
         <mkdir dir="${test.classpath}" />
         <javac srcdir="${test.dir}" destdir="${test.classpath}"
             includeantruntime="true" nowarn="yes" debug="true">
-            <classpath refid="lib" />
-            <classpath>
-                <pathelement location="${build.classpath}" />
-            </classpath>
+            <classpath location="lib" />
+            <classpath location="${build.classpath}" />
         </javac>
     </target>
 
     <target name="test" depends="compileTest">
         <junitlauncher>
             <classpath>
-                <pathelement location="${build.classpath}" />
+                <pathelement location="lib" />
             </classpath>
-            <classpath>
-                <pathelement location="${test.classpath}" />
-            </classpath>
+            <classpath location="${build.classpath}" />
+            <classpath location="${test.classpath}" />
             <testclasses outputdir="${build.dir}">
                 <fileset dir="${test.classpath}" />
             </testclasses>
