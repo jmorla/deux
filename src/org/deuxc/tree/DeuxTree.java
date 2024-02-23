@@ -1,5 +1,7 @@
 package org.deuxc.tree;
 
+import org.deuxc.parser.Token.TokenKind;
+
 /**
  * Root class for abstract syntax tree nodes. It provides definitions
  * for specific tree nodes as subclasses nested inside.
@@ -84,6 +86,45 @@ public class DeuxTree {
      * Add fields and methods related to expressions here.
      */
     public static abstract sealed class Expression extends ParseNode implements Visitable {
+
+    }
+
+    /**
+     * Represents a binary expression in deux programming language.
+     *
+     * <p>
+     * This class extends the {@link Expression} class.
+     * </p>
+     */
+    public static final class BinaryExpression extends Expression {
+        private final String leftValue;
+        private final TokenKind operator;
+        private final String rightValue;
+
+        @Override
+        public void accept(Visitor t) {
+            t.visitBinaryExpression(this);
+        }
+
+        public BinaryExpression(String leftValue, TokenKind operator, String rightValue) {
+            this.leftValue = leftValue;
+            this.operator = operator;
+            this.rightValue = rightValue;
+        }
+
+        public String getLeftValue() {
+            return leftValue;
+        }
+
+        public TokenKind getOperator() {
+            return operator;
+        }
+
+        public String getRightValue() {
+            return rightValue;
+        }
+
+        
 
     }
 

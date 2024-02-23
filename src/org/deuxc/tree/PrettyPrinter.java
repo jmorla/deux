@@ -6,6 +6,7 @@ import java.io.Writer;
 import org.deuxc.diagnostic.LoggerFactory;
 import org.deuxc.parser.Parser;
 import org.deuxc.parser.ParserFactory;
+import org.deuxc.tree.DeuxTree.BinaryExpression;
 import org.deuxc.tree.DeuxTree.CompilationUnit;
 import org.deuxc.tree.DeuxTree.Expression;
 import org.deuxc.tree.DeuxTree.ParseNode;
@@ -112,14 +113,6 @@ public class PrettyPrinter extends AbstractVisitor {
     }
 
     @Override
-    public void visitPrimaryExpression(PrimaryExpression pExpr) {
-        printNode(pExpr);
-        printIdent(3);
-        print("LiteralValue(" + pExpr.getValue()+")");
-        println("");
-    }
-
-    @Override
     public void visitReturnStatement(ReturnStatement rStmnt) {
         printNode(rStmnt);
         Expression expr = rStmnt.getExpr();
@@ -129,10 +122,31 @@ public class PrettyPrinter extends AbstractVisitor {
         }
     }
 
+    @Override
+    public void visitPrimaryExpression(PrimaryExpression pExpr) {
+        printNode(pExpr);
+        printIdent(3);
+        print("LiteralValue(" + pExpr.getValue() + ")");
+        println("");
+    }
+
+    
+
+    @Override
+    public void visitBinaryExpression(BinaryExpression bExpr) {
+        printNode(bExpr);
+        printIdent(3);
+        println("LiteralValue(" + bExpr.getLeftValue() + ")");
+        printIdent(3);
+        println("InfixOperator(" + bExpr.getOperator().name + ")");
+        printIdent(3);
+        println("LiteralValue(" + bExpr.getRightValue() + ")");
+    }
+
     public static void main(String[] args) {
         PrettyPrinter printer = new PrettyPrinter();
 
-        char[] source = "return 10;".toCharArray();
+        char[] source = "return 10 + 10;".toCharArray();
 
 
         Parser parser = new ParserFactory().newParser(

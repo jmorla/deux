@@ -103,6 +103,10 @@ public class DeuxTokenizer extends BaseReader {
                     kind = TokenKind.SEMICOLON;
                     next();
                     break loop;
+                case '+':
+                    kind = TokenKind.ADD;
+                    next();
+                    break loop;
                 default:
                     if (get() == EOF) {
                         kind = TokenKind.EOF;

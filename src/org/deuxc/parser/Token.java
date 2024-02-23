@@ -49,7 +49,8 @@ public class Token {
         EOF(),
         RETURN("return"),
         NUMERIC("number"),
-        SEMICOLON(";");
+        SEMICOLON(";"),
+        ADD("+");
 
         public final String name;
 

@@ -1,5 +1,6 @@
 package org.deuxc.tree;
 
+import org.deuxc.tree.DeuxTree.BinaryExpression;
 import org.deuxc.tree.DeuxTree.CompilationUnit;
 import org.deuxc.tree.DeuxTree.ParseNode;
 import org.deuxc.tree.DeuxTree.PrimaryExpression;
@@ -26,7 +27,7 @@ import org.deuxc.tree.DeuxTree.ReturnStatement;
  *
  * @version 1.0
  */
-public class AbstractVisitor implements Visitor {
+public abstract class AbstractVisitor implements Visitor {
 
     /**
      * Visits a CompilationUnit, initiating the traversal of its elements.
@@ -56,6 +57,15 @@ public class AbstractVisitor implements Visitor {
     @Override
     public void visitPrimaryExpression(PrimaryExpression pExpr) {
         this.visit(pExpr);
+    }
+
+    /**
+     * Visits a BinaryExpression, initiating the traversal of its elements.
+     *
+     * @param pExpr The BinaryExpression to be visited.
+     */
+    public void visitBinaryExpression(BinaryExpression bExpr) {
+        this.visit(bExpr);
     }
 
     private void visit(ParseNode node) {

@@ -27,6 +27,8 @@ public interface AsmMemonic {
     */
     String MOV = "mov";
 
+    String ADD = "add";
+
     /**
      * syscall
     */

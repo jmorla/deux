@@ -6,10 +6,12 @@
 
 <expression> ::= <primaryExpression> | <binaryExpression>
 
-<binaryExpression> ::= <integerLiteral> "+" <integerLiteral>
+<binaryExpression> ::= <integerLiteral> <infixOperator> <integerLiteral>
 
 <primaryExpression> ::= <integerLiteral>
 
 <integerLiteral> ::= <digit> | <digit>*
+
+<infixOperator> ::= +
 
 <digit> ::= [0-9]

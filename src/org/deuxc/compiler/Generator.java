@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.Writer;
 
 import org.deuxc.tree.AbstractVisitor;
+import org.deuxc.tree.DeuxTree.BinaryExpression;
 import org.deuxc.tree.DeuxTree.CompilationUnit;
 import org.deuxc.tree.DeuxTree.PrimaryExpression;
 import org.deuxc.tree.DeuxTree.ReturnStatement;
@@ -39,9 +40,21 @@ public class Generator extends AbstractVisitor {
 
     @Override
     public void visitReturnStatement(ReturnStatement rStmnt) {
-        PrimaryExpression expression = (PrimaryExpression) rStmnt.getExpr();
+        var expr = rStmnt.getExpr();
+        expr.accept(this);
+    }
+
+    @Override
+    public void visitBinaryExpression(BinaryExpression bExpr) {
+        emitInstruction(MOV, RDI, bExpr.getLeftValue());
+        emitInstruction(ADD, RDI, bExpr.getRightValue());
         emitInstruction(MOV, RAX, "60");
-        emitInstruction(MOV, RDI, expression.getValue());
+    }
+
+    @Override
+    public void visitPrimaryExpression(PrimaryExpression pExpr) {
+        emitInstruction(MOV, RAX, "60");
+        emitInstruction(MOV, RDI, pExpr.getValue());
     }
 
     private void emit(String... args) {

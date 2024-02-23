@@ -17,7 +17,7 @@
         <mkdir dir="${build.classpath}" />
         <javac includeantruntime="false" srcdir="${source.dir}" destdir="${build.classpath}" />
     </target>
-    
+
     <target name="compileTest" depends="compile" description="compile jUnit Test cases ">
         <mkdir dir="${test.classpath}" />
         <javac srcdir="${test.dir}" destdir="${test.classpath}"
@@ -29,16 +29,14 @@
 
     <target name="test" depends="compileTest">
         <junitlauncher>
-            <classpath>
-                <pathelement location="lib" />
-            </classpath>
+            <classpath location="lib" />
             <classpath location="${build.classpath}" />
             <classpath location="${test.classpath}" />
             <testclasses outputdir="${build.dir}">
                 <fileset dir="${test.classpath}" />
             </testclasses>
         </junitlauncher>
-    </target> 
+    </target>
 
     <target name="package" depends="compile">
         <jar destfile="${build.dir}/${ant.project.name}.jar" basedir="${build.classpath}">

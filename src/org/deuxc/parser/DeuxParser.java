@@ -4,6 +4,7 @@ import org.deuxc.diagnostic.Log;
 import org.deuxc.diagnostic.Diagnostic.Error;
 import org.deuxc.diagnostic.Diagnostic.Errors;
 import org.deuxc.parser.Token.TokenKind;
+import org.deuxc.tree.DeuxTree.BinaryExpression;
 import org.deuxc.tree.DeuxTree.CompilationUnit;
 import org.deuxc.tree.DeuxTree.Expression;
 import org.deuxc.tree.DeuxTree.PrimaryExpression;
@@ -38,7 +39,7 @@ public class DeuxParser implements Parser {
                 return new CompilationUnit();
             }
             var statement = parseReturnStatement();
-            expect(TokenKind.EOF, Errors.missingSymbol("eof"));
+            expect(TokenKind.EOF, Errors.missingSymbol("EOF"));
             return new CompilationUnit(statement);
         } catch (ParseError error) {
             // we must syncronize the parser here
@@ -48,9 +49,25 @@ public class DeuxParser implements Parser {
 
     private ReturnStatement parseReturnStatement() {
         expect(TokenKind.RETURN, Errors.missingReturnStatement());
-        Expression expr = parsePrimaryExpression();
+
+        Expression expr;
+        if (!check(1, TokenKind.ADD)) {
+            expr = parsePrimaryExpression();
+        } else {
+            expr = parseBinaryExpression();
+        }
         expect(TokenKind.SEMICOLON, Errors.missingSymbol(TokenKind.SEMICOLON.name));
         return new ReturnStatement(expr);
+    }
+
+    private BinaryExpression parseBinaryExpression() {
+        var left = (Token.NumericToken) 
+        expect(TokenKind.NUMERIC, Errors.missingSymbol(TokenKind.NUMERIC.name));
+        var op = expect(TokenKind.ADD, Errors.missingSymbol(TokenKind.ADD.name));
+        var right = (Token.NumericToken) 
+        expect(TokenKind.NUMERIC, Errors.missingSymbol(TokenKind.NUMERIC.name));
+
+        return new BinaryExpression(left.value, op.kind, right.value);
     }
 
     private PrimaryExpression parsePrimaryExpression() {
@@ -59,25 +76,33 @@ public class DeuxParser implements Parser {
         return new PrimaryExpression(token.value);
     }
 
-    private Token get() {
-        return scanner.getToken();
+    private Token peek() {
+        return peek(0);
+    }
+
+    private Token peek(int lookahead) {
+        return scanner.getToken(lookahead);
+    }
+
+    private boolean check(int lookahead, TokenKind kind) {
+        return scanner.getToken(lookahead).kind == kind;
     }
 
     private Token next() {
-        Token token = get();
+        Token token = peek();
         scanner.nextToken();
         return token;
     }
 
     private boolean check(TokenKind kind) {
-        return get().kind == kind;
+        return peek().kind == kind;
     }
 
     private Token expect(TokenKind kind, Error error) {
         if (check(kind)) {
             return next();
         }
-        throw error(get(), error);
+        throw error(peek(), error);
     }
 
     private ParseError error(Token token, Error error) {

@@ -27,4 +27,12 @@ public interface Visitor {
      */
     void visitPrimaryExpression(DeuxTree.PrimaryExpression pExpr);
 
+
+    /**
+     * Visits a Binary Expression in the Deux programming language.
+     *
+     * @param pExpr The Binary Expression to be visited.
+     */
+    void visitBinaryExpression(DeuxTree.BinaryExpression bExpr);
+
 }
